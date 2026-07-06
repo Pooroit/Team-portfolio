@@ -16,7 +16,7 @@ export default function Projects({ onOpenModal }: ProjectsProps) {
       <div className="max-w-[1600px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20">
           <h2 className="text-4xl md:text-6xl font-bold leading-tight">
-            Избранные <br /> <span className={fontSerifItalic}>проекты</span>
+            Наши <br /> <span className={fontSerifItalic}>проекты</span>
           </h2>
           <span className={`${fontMono} mt-4`}>04 Works / 2024-2026</span>
         </div>

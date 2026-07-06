@@ -1,5 +1,12 @@
 import type { Service, Project, Principle, TeamMember } from "../types";
 
+import photoKir from "../image/Kir.jpg";
+import photoAr from "../image/ar.jpg";
+import photoArt from "../image/Art.jpg";
+import photoDima from "../image/dima.jpg";
+import photoIl from "../image/Il.jpg";
+import photoMark from "../image/Mark.jpg";
+
 export const services: Service[] = [
   {
     id: "01",
@@ -61,32 +68,32 @@ export const projects: Project[] = [
   },
   {
     id: "02",
-    title: "Velvet E-com",
+    title: "Батутный центр Прыгскок",
     cat: "Retail / Branding",
     color: "from-[#1A2E25] to-[#0A0A0A]",
     year: "2025",
     desc: "Интернет-магазин люксовой мебели. Бесшовный опыт покупок и 3D-просмотр изделий.",
-    url: null,
-    preview: null,
+    url: "https://trampoline-6i2u.vercel.app",
+    preview: "https://image.thum.io/get/width/1200/crop/630/https://trampoline-6i2u.vercel.app",
   },
   {
     id: "03",
-    title: "Nebula AI",
+    title: "Газоны",
     cat: "SaaS / Product Design",
     color: "from-[#2A2A3D] to-[#0A0A0A]",
     year: "2025",
     desc: "B2B платформа на базе ИИ для автоматизации бизнес-процессов в логистике.",
-    url: null,
-    preview: null,
+    url: "https://bugaev-temp-neza-cex.vercel.app",
+    preview: "https://image.thum.io/get/width/1200/crop/630/https://bugaev-temp-neza-cex.vercel.app",
   },
   {
     id: "04",
-    title: "Lumiere App",
+    title: "Пекарня",
     cat: "Mobile / UI/UX",
     color: "from-[#3D1E2C] to-[#0A0A0A]",
     year: "2024",
     desc: "Приложение для бронирования премиальных spa-услуг. Интеграция с Apple Pay и календарями.",
-    url: null,
+    url: "https://andrunikaa.github.io/Bakery",
     preview: null,
   },
 ];
@@ -128,6 +135,7 @@ export const team: TeamMember[] = [
       { name: "DevOps", level: 85 },
     ],
     exp: "10 лет в коммерческой разработке. Ex-Yandex, Avito.",
+    photo: photoKir,
   },
   {
     id: "02",
@@ -142,6 +150,7 @@ export const team: TeamMember[] = [
       { name: "Motion", level: 80 },
     ],
     exp: "8 лет в дизайне. Награды Awwwards, FWA.",
+    photo: photoAr,
   },
   {
     id: "03",
@@ -156,6 +165,7 @@ export const team: TeamMember[] = [
       { name: "Analytics", level: 90 },
     ],
     exp: "7 лет в маркетинге. Выстроил отделы с нуля в 3 стартапах.",
+    photo: photoArt,
   },
   {
     id: "04",
@@ -170,6 +180,7 @@ export const team: TeamMember[] = [
       { name: "SQL/Python", level: 95 },
     ],
     exp: "6 лет в аналитике. Магистр прикладной математики.",
+    photo: photoDima,
   },
   {
     id: "05",
@@ -184,6 +195,7 @@ export const team: TeamMember[] = [
       { name: "WebGL", level: 78 },
     ],
     exp: "5 лет в разработке. Специалист по сложным анимациям.",
+    photo: photoIl,
   },
   {
     id: "06",
@@ -198,5 +210,19 @@ export const team: TeamMember[] = [
       { name: "Typography", level: 95 },
     ],
     exp: "7 лет в дизайне. Работал с топ-10 агентствами СНГ.",
+    photo: photoMark,
+  },
+  {
+    id: "07",
+    name: "Вакантное место",
+    role: "Открытая позиция",
+    focus: "Твоя экспертиза",
+    nextRole: "Любой отдел",
+    bio: "Мы ищем человека, который разделяет наши ценности и готов строить что-то большое вместе с командой Цеха.",
+    skills: [
+      { name: "Твои навыки", level: 0 },
+    ],
+    exp: "Расскажи нам о себе — и мы рассмотрим твою кандидатуру.",
+    isVacant: true,
   },
 ];

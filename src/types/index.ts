@@ -36,9 +36,11 @@ export interface TeamMember {
   bio: string;
   skills: Skill[];
   exp: string;
+  photo?: string;
+  isVacant?: boolean;
 }
 
 export interface ActiveModal {
-  type: "project" | "service" | "team";
+  type: "project" | "service" | "team" | "contact";
   index: number;
 }

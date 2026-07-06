@@ -48,7 +48,7 @@ export default function LandingPage() {
       <Preloader loading={loading} hideLoader={hideLoader} />
       <CustomCursor />
       <Ticker />
-      <Header />
+      <Header onOpenModal={setActiveModal} />
       <Hero />
       <Services onOpenModal={setActiveModal} />
       <Principles />
