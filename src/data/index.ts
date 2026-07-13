@@ -68,7 +68,7 @@ export const projects: Project[] = [
   },
   {
     id: "02",
-    title: "Батутный центр Прыгскок",
+    title: "Батутный центр",
     cat: "Retail / Branding",
     color: "from-[#1A2E25] to-[#0A0A0A]",
     year: "2025",
@@ -78,7 +78,7 @@ export const projects: Project[] = [
   },
   {
     id: "03",
-    title: "Газоны",
+    title: "Ландшафтный дизайн",
     cat: "SaaS / Product Design",
     color: "from-[#2A2A3D] to-[#0A0A0A]",
     year: "2025",

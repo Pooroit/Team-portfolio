@@ -173,6 +173,7 @@ function ServiceModal({
 
 function JoinForm({ onClose }: { onClose: () => void }) {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
     role: "",
@@ -186,8 +187,24 @@ function JoinForm({ onClose }: { onClose: () => void }) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Вставь сюда URL своего Google Apps Script после деплоя
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxThdjFFModU79r-FWZrzowVgnnc_zZ0Ub0KwtdVdlGGOtgp8Uua-y2Fkeik-nGl9SKqg/exec";
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading) return;
+    setLoading(true);
+    try {
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify({ formType: "join", ...form }),
+      });
+    } catch {
+      // Даже при ошибке сети показываем успех — данные могли дойти
+    } finally {
+      setLoading(false);
+    }
     setSubmitted(true);
   };
 
@@ -284,10 +301,11 @@ function JoinForm({ onClose }: { onClose: () => void }) {
 
       <button
         type="submit"
-        className="flex items-center justify-center gap-3 px-8 py-4 bg-[#C5A572] text-black text-xs font-bold uppercase tracking-widest hover:bg-white transition-colors mt-2"
+        disabled={loading}
+        className="flex items-center justify-center gap-3 px-8 py-4 bg-[#C5A572] text-black text-xs font-bold uppercase tracking-widest hover:bg-white transition-colors mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        Отправить заявку
-        <Send className="w-4 h-4" />
+        {loading ? "Отправляем..." : "Отправить заявку"}
+        {!loading && <Send className="w-4 h-4" />}
       </button>
     </form>
   );
@@ -444,6 +462,7 @@ function TeamModal({
 
 function ContactModal({ onClose }: { onClose: () => void }) {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
     contact: "",
@@ -457,8 +476,24 @@ function ContactModal({ onClose }: { onClose: () => void }) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Тот же URL — данные из обеих форм попадут в одну таблицу
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxThdjFFModU79r-FWZrzowVgnnc_zZ0Ub0KwtdVdlGGOtgp8Uua-y2Fkeik-nGl9SKqg/exec";
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading) return;
+    setLoading(true);
+    try {
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify({ formType: "contact", ...form }),
+      });
+    } catch {
+      // Даже при ошибке сети показываем успех
+    } finally {
+      setLoading(false);
+    }
     setSubmitted(true);
   };
 
@@ -595,10 +630,11 @@ function ContactModal({ onClose }: { onClose: () => void }) {
 
           <button
             type="submit"
-            className="flex items-center justify-center gap-3 px-8 py-4 bg-[#C5A572] text-black text-xs font-bold uppercase tracking-widest hover:bg-white transition-colors mt-2"
+            disabled={loading}
+            className="flex items-center justify-center gap-3 px-8 py-4 bg-[#C5A572] text-black text-xs font-bold uppercase tracking-widest hover:bg-white transition-colors mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Отправить заявку
-            <Send className="w-4 h-4" />
+            {loading ? "Отправляем..." : "Отправить заявку"}
+            {!loading && <Send className="w-4 h-4" />}
           </button>
         </form>
       </div>
