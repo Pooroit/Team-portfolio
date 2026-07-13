@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Plus } from "lucide-react";
 import { fontSerifItalic, fontMono } from "../constants";
 import { services } from "../data";
@@ -8,6 +9,8 @@ interface ServicesProps {
 }
 
 export default function Services({ onOpenModal }: ServicesProps) {
+  const [hovered, setHovered] = useState<number | null>(null);
+
   return (
     <section
       id="services"
@@ -28,24 +31,43 @@ export default function Services({ onOpenModal }: ServicesProps) {
               key={index}
               className="group relative border-b border-white/10"
               onClick={() => onOpenModal({ type: "service", index })}
+              onMouseEnter={() => setHovered(index)}
+              onMouseLeave={() => setHovered(null)}
             >
               <div
                 data-cursor="Open"
-                className="relative grid grid-cols-12 gap-4 py-10 px-2 items-center transition-transform duration-500 group-hover:px-6 cursor-pointer"
+                className={`relative grid grid-cols-12 gap-4 py-10 px-2 items-center transition-all duration-500 group-hover:px-6 cursor-pointer ${
+                  hovered !== null && hovered !== index ? "opacity-30" : "opacity-100"
+                }`}
               >
                 <span
                   className={`${fontMono} col-span-2 md:col-span-1 text-[#C5A572]`}
                 >
                   ({service.id})
                 </span>
-                <h3 className="col-span-10 md:col-span-4 text-3xl md:text-5xl font-bold tracking-tight text-white group-hover:text-[#C5A572] transition-colors duration-500">
+                <h3 className="col-span-10 md:col-span-3 text-3xl md:text-5xl font-bold tracking-tight text-white group-hover:text-[#C5A572] transition-colors duration-500">
                   {service.title}
                 </h3>
-                <p className="hidden md:block md:col-span-5 text-gray-500 text-base leading-relaxed">
+                <p className="hidden md:block md:col-span-4 text-gray-500 text-base leading-relaxed">
                   {service.desc}
                 </p>
-                <div className="hidden md:flex md:col-span-2 justify-end items-center gap-4">
-                  <span className={`${fontMono}`}>Подробнее</span>
+                {/* Теги стека — появляются при hover */}
+                <div className="hidden md:flex md:col-span-3 flex-wrap gap-1.5 items-center">
+                  {service.details.map((tag, ti) => (
+                    <span
+                      key={ti}
+                      className={`${fontMono} text-[10px] px-2 py-1 border border-white/10 text-gray-500 transition-all duration-300`}
+                      style={{
+                        opacity: hovered === index ? 1 : 0,
+                        transform: hovered === index ? "translateY(0)" : "translateY(4px)",
+                        transitionDelay: `${ti * 40}ms`,
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="hidden md:flex md:col-span-1 justify-end items-center gap-4">
                   <Plus className="w-5 h-5 text-white/50 group-hover:text-[#C5A572] group-hover:rotate-90 transition-all duration-500" />
                 </div>
               </div>

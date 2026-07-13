@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import logo from "../image/logo.png";
 import type { ActiveModal } from "../types";
 
 interface HeaderProps {
@@ -23,7 +24,7 @@ export default function Header({ onOpenModal }: HeaderProps) {
           if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
-      { rootMargin: "-40% 0px -55% 0px" }
+      { rootMargin: "-40% 0px -55% 0px" },
     );
     sections.forEach((id) => {
       const el = document.getElementById(id);
@@ -55,13 +56,15 @@ export default function Header({ onOpenModal }: HeaderProps) {
       <nav className="flex items-center justify-between px-8 md:px-12 py-6 text-white">
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="flex items-baseline gap-3"
+          className="flex items-center"
           data-cursor="Top"
         >
-          <span className="text-2xl font-bold tracking-tight">ЦЕХ</span>
-          <span className="text-[10px] font-mono uppercase opacity-50">
-            © 2026
-          </span>
+          <img
+            src={logo}
+            alt="ЦЕХ"
+            className="h-16  w-auto object-contain"
+            style={{ mixBlendMode: "screen" }}
+          />
         </button>
 
         <div className="hidden md:flex items-center gap-12 text-sm font-medium uppercase tracking-wider">

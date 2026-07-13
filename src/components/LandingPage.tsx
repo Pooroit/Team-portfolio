@@ -60,17 +60,24 @@ export default function LandingPage() {
       <style>{`
         @keyframes marquee-fast {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-33.33%); }
+          100% { transform: translateX(-50%); }
         }
         .animate-marquee-fast {
-          animation: marquee-fast 15s linear infinite;
+          animation: marquee-fast 20s linear infinite;
+        }
+        @keyframes marquee-reverse {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+        .animate-marquee-reverse {
+          animation: marquee-reverse 20s linear infinite;
         }
         @keyframes loader-line {
           0% { width: 0%; }
           100% { width: 100%; }
         }
         .animate-loader-line {
-          animation: loader-line 1.5s ease forwards;
+          animation: loader-line 1.8s ease forwards;
         }
       `}</style>
     </div>

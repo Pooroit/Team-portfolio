@@ -142,11 +142,13 @@ export default function Team({ onOpenModal }: TeamProps) {
                           {currentMember.id}
                         </span>
                       )}
-                      <div className="absolute bottom-4 left-4 flex flex-col gap-1 z-10">
-                        <span className={`${fontMono} text-[#C5A572] drop-shadow-lg`}>
+                      {/* Градиент снизу — всегда гарантирует читаемость */}
+                      <div className="absolute bottom-0 left-0 right-0 h-2/5 bg-gradient-to-t from-black via-black/80 to-transparent z-10 pointer-events-none" />
+                      <div className="absolute bottom-4 left-4 flex flex-col gap-0.5 z-20">
+                        <span className={`${fontMono} text-[#C5A572] text-xs uppercase tracking-widest`}>
                           {currentMember.role}
                         </span>
-                        <span className="text-2xl font-bold text-white drop-shadow-lg">
+                        <span className="text-xl font-bold text-white leading-tight">
                           {currentMember.name}
                         </span>
                       </div>

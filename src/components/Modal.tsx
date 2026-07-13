@@ -59,14 +59,31 @@ function ProjectModal({ index }: { index: number }) {
   return (
     <div className="flex flex-col md:flex-row">
       <div
-        className={`relative w-full md:w-1/2 min-h-[300px] bg-gradient-to-br ${project.color} flex items-center justify-center p-8 overflow-hidden`}
+        className={`relative w-full md:w-1/2 min-h-[360px] bg-gradient-to-br ${project.color} flex items-center justify-center p-6 overflow-hidden`}
       >
+        {/* Фоновое свечение */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(197,165,114,0.08)_0%,_transparent_70%)]" />
+
         {project.preview ? (
-          <img
-            src={project.preview}
-            alt={project.title}
-            className="absolute inset-0 w-full h-full object-cover object-top opacity-90"
-          />
+          /* Браузерная рамка */
+          <div className="relative w-full max-w-[420px] rounded-lg overflow-hidden shadow-2xl border border-white/10">
+            {/* Браузерный топбар */}
+            <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[#1a1a1a] border-b border-white/10">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+              <div className="ml-3 flex-1 bg-white/5 rounded px-3 py-0.5 text-[10px] text-gray-500 font-mono truncate">
+                {project.url?.replace("https://", "") ?? "preview"}
+              </div>
+            </div>
+            {/* Скриншот */}
+            <img
+              src={project.preview}
+              alt={project.title}
+              className="w-full block object-cover object-top"
+              style={{ maxHeight: "260px" }}
+            />
+          </div>
         ) : (
           <span className="text-[12rem] font-bold text-white/5">
             {project.id}
@@ -342,7 +359,7 @@ function TeamModal({
 
   return (
     <div className="flex flex-col md:flex-row">
-      <div className="relative w-full md:w-2/5 min-h-[400px] bg-gradient-to-br from-[#151515] to-[#0A0A0A] flex items-center justify-center p-8 border-r border-white/10 overflow-hidden">
+      <div className="relative w-full md:w-2/5 min-h-[400px] bg-gradient-to-br from-[#151515] to-[#0A0A0A] flex items-center justify-center border-r border-white/10 overflow-hidden">
         {member.photo ? (
           <img
             src={member.photo}
@@ -354,11 +371,11 @@ function TeamModal({
             {member.id}
           </span>
         )}
-        {/* Градиент поверх фото снизу */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A0A0A] to-transparent" />
-        <div className="absolute bottom-6 left-6 z-10">
-          <span className={`${fontMono} text-[#C5A572] block mb-1`}>{member.role}</span>
-          <span className="text-xl font-bold text-white">{member.name}</span>
+        {/* Градиент снизу */}
+        <div className="absolute bottom-0 left-0 right-0 h-2/5 bg-gradient-to-t from-black via-black/75 to-transparent z-10" />
+        <div className="absolute bottom-6 left-6 z-20">
+          <span className={`${fontMono} text-[#C5A572] text-xs uppercase tracking-widest block mb-1`}>{member.role}</span>
+          <span className="text-xl font-bold text-white leading-tight block">{member.name}</span>
         </div>
       </div>
       <div className="w-full md:w-3/5 p-8 md:p-12 flex flex-col">

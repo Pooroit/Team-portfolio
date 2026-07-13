@@ -31,30 +31,45 @@ export default function CustomCursor() {
   }, [x, y]);
 
   return (
-    <motion.div
-      className="hidden lg:flex fixed top-0 left-0 pointer-events-none z-[100] items-center justify-center rounded-full border border-[#C5A572] bg-transparent backdrop-blur-sm"
-      style={{
-        translateX: cursorXSpring,
-        translateY: cursorYSpring,
-        width: cursorText ? 80 : 32,
-        height: cursorText ? 80 : 32,
-        marginLeft: cursorText ? -40 : -16,
-        marginTop: cursorText ? -40 : -16,
-      }}
-      animate={{
-        opacity: 1,
-        backgroundColor: cursorText
-          ? "rgba(197, 165, 114, 0.9)"
-          : "rgba(0,0,0,0)",
-        color: cursorText ? "#000" : "transparent",
-      }}
-      transition={{ type: "spring", stiffness: 500, damping: 30 }}
-    >
-      {cursorText && (
-        <span className="text-[10px] font-bold uppercase tracking-wider">
-          {cursorText}
-        </span>
-      )}
-    </motion.div>
+    <>
+      {/* Внешнее кольцо — следует с задержкой */}
+      <motion.div
+        className="hidden lg:block fixed top-0 left-0 pointer-events-none z-[100] rounded-full"
+        style={{
+          translateX: cursorXSpring,
+          translateY: cursorYSpring,
+        }}
+        animate={{
+          width: cursorText ? 44 : 36,
+          height: cursorText ? 44 : 36,
+          marginLeft: cursorText ? -22 : -18,
+          marginTop: cursorText ? -22 : -18,
+          backgroundColor: cursorText
+            ? "rgba(197, 165, 114, 1)"
+            : "transparent",
+          border: cursorText
+            ? "1.5px solid rgba(197, 165, 114, 1)"
+            : "1.5px solid rgba(197, 165, 114, 0.5)",
+          mixBlendMode: cursorText ? "difference" : "normal",
+        }}
+        transition={{ type: "spring", stiffness: 500, damping: 35 }}
+      />
+      {/* Маленькая точка — центр, реагирует мгновенно */}
+      <motion.div
+        className="hidden lg:block fixed top-0 left-0 pointer-events-none z-[101] rounded-full bg-[#C5A572]"
+        style={{
+          translateX: x,
+          translateY: y,
+          marginLeft: -2,
+          marginTop: -2,
+        }}
+        animate={{
+          width: cursorText ? 0 : 4,
+          height: cursorText ? 0 : 4,
+          opacity: cursorText ? 0 : 1,
+        }}
+        transition={{ duration: 0.15 }}
+      />
+    </>
   );
 }
