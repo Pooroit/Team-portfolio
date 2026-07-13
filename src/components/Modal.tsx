@@ -539,7 +539,7 @@ function ContactModal({ onClose }: { onClose: () => void }) {
         <div className="relative mt-10 space-y-4 border-t border-white/10 pt-8">
           <div>
             <span className={`${fontMono} text-xs text-gray-600 uppercase tracking-widest block mb-1`}>Email</span>
-            <span className="text-gray-300 text-sm">hello@tsekh.studio</span>
+            <a href="mailto:neza@nzproject.ru" className="text-gray-300 text-sm hover:text-[#C5A572] transition-colors">neza@nzproject.ru</a>
           </div>
           <div>
             <span className={`${fontMono} text-xs text-gray-600 uppercase tracking-widest block mb-1`}>Telegram</span>

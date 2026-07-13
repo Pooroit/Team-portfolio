@@ -1,4 +1,5 @@
-import { Clock, Mail } from "lucide-react";
+import { useState } from "react";
+import { Clock, Mail, Check } from "lucide-react";
 import { fontSerifItalic, fontMono } from "../constants";
 
 interface FooterProps {
@@ -6,6 +7,16 @@ interface FooterProps {
 }
 
 export default function Footer({ currentTime }: FooterProps) {
+  const [copied, setCopied] = useState(false);
+
+  const handleEmailClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigator.clipboard.writeText("neza@nzproject.ru").then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
   return (
     <footer className="relative px-8 md:px-12 pt-32 border-t border-white/10 bg-[#050505] pb-16">
       <div className="max-w-[1600px] mx-auto">
@@ -26,13 +37,20 @@ export default function Footer({ currentTime }: FooterProps) {
               Свяжитесь с нами:
             </span>
             <a
-              href="mailto:hello@ceh.studio"
+              href="mailto:neza@nzproject.ru"
+              onClick={handleEmailClick}
               data-cursor="Send"
               className="group inline-flex items-center gap-4 text-3xl md:text-5xl font-medium text-white border-b border-white/20 pb-2 hover:border-[#C5A572] transition-colors"
             >
-              hello@ceh.studio
-              <Mail className="w-8 h-8 text-[#C5A572] group-hover:rotate-12 transition-transform" />
+              neza@nzproject.ru
+              {copied
+                ? <Check className="w-8 h-8 text-[#C5A572]" />
+                : <Mail className="w-8 h-8 text-[#C5A572] group-hover:rotate-12 transition-transform" />
+              }
             </a>
+            {copied && (
+              <span className="block mt-2 text-sm text-[#C5A572]">Скопировано в буфер</span>
+            )}
             <p className="text-gray-500 mt-6 max-w-lg leading-relaxed text-sm">
               Мы не берем в работу больше 3 проектов одновременно, чтобы
               сохранить фокус на качестве. Если вы ищете надежного партнера для

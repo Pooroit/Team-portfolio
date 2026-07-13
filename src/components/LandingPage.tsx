@@ -11,6 +11,9 @@ import Projects from "./Projects";
 import Team from "./Team";
 import Modal from "./Modal";
 import Footer from "./Footer";
+import CookieBanner from "./CookieBanner";
+import BadExample from "./BadExample";
+import PricingStrip from "./PricingStrip";
 
 export default function LandingPage() {
   const [loading, setLoading] = useState(true);
@@ -52,10 +55,13 @@ export default function LandingPage() {
       <Hero />
       <Services onOpenModal={setActiveModal} />
       <Principles />
+      <PricingStrip onOpenModal={() => setActiveModal({ type: "contact", index: 0 })} />
+      <BadExample onOpenModal={() => setActiveModal({ type: "contact", index: 0 })} />
       <Projects onOpenModal={setActiveModal} />
       <Team onOpenModal={setActiveModal} />
       <Modal activeModal={activeModal} onClose={() => setActiveModal(null)} />
       <Footer currentTime={currentTime} />
+      <CookieBanner />
 
       <style>{`
         @keyframes marquee-fast {
